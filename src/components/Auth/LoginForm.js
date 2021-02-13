@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { Box, Button, TextField } from '@material-ui/core/';
 import { useAuth } from './AuthContext';
 import axios from 'axios';
+import { config } from '../../helpers/constants';
 
 const LoginForm = ({ toggleActiveForm }) => {
   const [email, setEmail] = useState(null);
@@ -20,7 +21,7 @@ const LoginForm = ({ toggleActiveForm }) => {
       password,
     };
     axios
-      .post('http://localhost:8000/api/v1/auth/login/', data)
+      .post(`${config.API_URL}/api/v1/auth/login/`, data)
       .then(res => {
         auth.setAuthTokens(res.data);
         setIsLoggedIn(true);
